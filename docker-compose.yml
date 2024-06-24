@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  etherscan-api:
+    build: .
+    image: etherscan-api
+    ports:
+      - '8888:8888'
+    # depends_on:
+    # - etherscan-api-postgresdb
+    volumes:
+      - .:/usr/src/node-app
+      - ./mycache:/tmp/mycache
+    networks:
+      - etherscan-api-network
+
+  # etherscan-api-mongodb:
+  #   image: mongo
+  #   volumes:
+  #     - ./datadir:/data/db
+  #   restart: unless-stopped
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #   networks:
+  #     - etherscan-api-network
+
+networks:
+  etherscan-api-network:
+    driver: bridge
