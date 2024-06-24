@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  etherscan-api:
+  my-api:
     build: .
-    image: etherscan-api
+    image: my-api
     ports:
       - '8888:8888'
     # depends_on:
@@ -12,9 +12,9 @@ services:
       - .:/usr/src/node-app
       - ./mycache:/tmp/mycache
     networks:
-      - etherscan-api-network
+      - my-api-network
 
-  # etherscan-api-mongodb:
+  # express-typescriptv-mongodb:
   #   image: mongo
   #   volumes:
   #     - ./datadir:/data/db
@@ -23,8 +23,8 @@ services:
   #     MONGO_INITDB_ROOT_USERNAME: root
   #     MONGO_INITDB_ROOT_PASSWORD: example
   #   networks:
-  #     - etherscan-api-network
+  #     - express-typescript-network
 
 networks:
-  etherscan-api-network:
+  my-api-network:
     driver: bridge
